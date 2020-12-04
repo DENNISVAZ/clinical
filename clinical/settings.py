@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'website.apps.WebsiteConfig',
     'users.apps.UsersConfig',
     'permissions.apps.PermissionsConfig',
+    'preconsults.apps.PreconsultsConfig',
 ]
 
 MIDDLEWARE = [
