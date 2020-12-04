@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website.apps.WebsiteConfig',
     'users.apps.UsersConfig',
+    'permissions.apps.PermissionsConfig',
 ]
 
 MIDDLEWARE = [
