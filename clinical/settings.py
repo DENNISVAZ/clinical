@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'preconsults.apps.PreconsultsConfig',
     'satisfaction.apps.SatisfactionConfig',
     'budgets.apps.BudgetsConfig',
+    'procedures.apps.ProceduresConfig',
 ]
 
 MIDDLEWARE = [
