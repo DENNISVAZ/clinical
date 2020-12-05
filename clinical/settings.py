@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'satisfaction.apps.SatisfactionConfig',
     'budgets.apps.BudgetsConfig',
     'procedures.apps.ProceduresConfig',
+    'surgery.apps.SurgeryConfig',
 ]
 
 MIDDLEWARE = [
