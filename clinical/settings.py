@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'permissions.apps.PermissionsConfig',
     'preconsults.apps.PreconsultsConfig',
+    'satisfaction.apps.SatisfactionConfig',
 ]
 
 MIDDLEWARE = [
