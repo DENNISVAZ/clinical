@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'surgery.apps.SurgeryConfig',
     'expenses.apps.ExpensesConfig',
     'audit.apps.AuditConfig',
+    'posts.apps.PostsConfig',
 ]
 
 MIDDLEWARE = [
