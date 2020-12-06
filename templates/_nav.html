@@ -1,0 +1,75 @@
+<nav class="navbar navbar-dark position-relative bg-dark">
+
+    <a class="navbar-brand" href="">Dr. Dhyego Curado</a>
+    {% if request.user.is_authenticated %}
+        <a class="navbar-brand" href="">Usuário: {{ user.email }}</a>
+    {% endif %}
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+            data-target="#navbarsExample01" aria-controls="navbarsExample01"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse" id="navbarsExample01" style="">
+        <ul class="navbar-nav mr-auto" >
+            {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown" >
+                    <a class="nav-link dropdown-toggle" href="#" id="usuarios"
+                       data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">Usuários</a>
+                    <div class="dropdown-menu" aria-labelledby="usuarios" >
+                        <a class="dropdown-item" href="#">Cadastro de usuários</a>
+                        <a class="dropdown-item" href="#">Permissões de acessos</a>
+                        <a class="dropdown-item" href="#">Auditoria</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown" >
+                    <a class="nav-link dropdown-toggle" href="#" id="mensagens"
+                       data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">Mensagens</a>
+                    <div class="dropdown-menu" aria-labelledby="mensagens" >
+                        <a class="dropdown-item" href="{% url 'index_preconsults' %}">
+                            Preconsultas
+                        </a>
+                        <a class="dropdown-item" href="#">Pesquisa de Satisfação</a>
+                        <a class="dropdown-item" href="#">Enviar Mensagens</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown" >
+                    <a class="nav-link dropdown-toggle" href="#" id="atendimentos"
+                       data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">Atendimentos</a>
+                    <div class="dropdown-menu" aria-labelledby="atendimentos" >
+                        <a class="dropdown-item" href="#">Orçamentos</a>
+                        <a class="dropdown-item" href="#">Consultas</a>
+                        <a class="dropdown-item" href="#">Procedimentos</a>
+                        <a class="dropdown-item" href="#">Cirurgias</a>
+                        <a class="dropdown-item" href="#">Despesas</a>
+                    </div>
+                </li>
+
+                <li class="nav-item" >
+                    <a class="nav-link" href="{% url 'logout' %}" id="logout"
+                       aria-haspopup="true" aria-expanded="false">
+                        Sair
+                    </a>
+                </li>
+            {% endif %}
+
+
+            {% if not request.user.is_authenticated %}
+                <form method="POST" action="{% url 'index_login' %}">
+                    {% csrf_token %}
+                    <label class="text-white">Usuário</label>
+                    <input type="text" name="user" value="{{ request.POST.user }}"  class="form-control">
+                    <label class="text-white">Senha</label>
+                    <input type="password" name="password" value="{{ request.POST.password }}"  class="form-control">
+                    <br>
+                    <button type="submit" class="btn btn-primary ">Entrar</button>
+                </form>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+

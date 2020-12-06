@@ -1,0 +1,31 @@
+{% load static %}
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %} | Dr. Dhyego Curado</title>
+        {% include '_head.html' %}
+    </head>
+
+    <body>
+        {% include '_nav.html' %}
+        {% include '_messages.html' %}
+        <!-- Page Content -->
+<!--
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+-->
+                    {% block main%}
+
+                    {% endblock %}
+<!--
+                </div>
+            </div>
+        </div>
+-->
+        {% include '_scripts.html' %}
+        {% block footer %}
+
+        {% endblock %}
+    </body>
+</html>
