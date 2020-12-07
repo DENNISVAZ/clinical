@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import preconsult
+from datetime import date
+from django.utils import timezone
 
-# Register your models here.
+
+admin.site.register(preconsult)

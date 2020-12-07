@@ -1,6 +1,6 @@
 {% if messages %}
     {% for message in messages %}
-        <div class="alert position-relative alert-warning alert-dismissible
+        <div class="alert position-relative {{ message.tags }} alert-dismissible
         fade show" role="alert">
             <strong> {{ message }}</strong>
             <button type="button" class="close  " data-dismiss="alert"

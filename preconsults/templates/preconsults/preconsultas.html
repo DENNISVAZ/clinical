@@ -1,10 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    PRE CONSULTAS
-</body>
-</html>
+{% extends 'default.html' %}
+
+{% block title %}
+    Cirurgião Plástico
+{% endblock %}
+
+{% block main%}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+    </div>
+    <div class="col-sm">
+      <form method="POST" action="{% url 'index_preconsults' %}">
+                    {% csrf_token %}
+          <img src="/static/TimbradoCurado.jpg" class="img-fluid" alt="Imagem responsiva">
+          <br>
+          {% include '_messages.html' %}
+                    <label class="text-black">Nome completo*</label>
+                    <input type="text" name="name" value=""  class="form-control">
+                    <label class="text-black">Telefone*</label>
+                    <input type="text" name="phone" value=""  class="form-control">
+                    <label class="text-black">Idade*</label>
+                    <input type="text" name="age" value=""  class="form-control">
+                    <label class="text-black">Profissão*</label>
+                    <input type="text" name="profession" value=""  class="form-control">
+                    <label class="text-black">Cirurgia(s)*</label>
+                    <textarea type="text" rows="2" name="surgery" value=""  class="form-control">
+                    </textarea>
+                    <label class="text-black">Qual sua expectativa em relação a(s) cirurgia(s)</label>
+                    <textarea type="text" rows="2" name="expectancy" value=""  class="form-control">
+                    </textarea>
+                    <label class="text-black">Qual seu medo em relação a(s) cirurgia(s)</label>
+                    <textarea type="text" rows="2" name="fear" value=""  class="form-control">
+                    </textarea>
+                    <label class="text-black">Indicação</label>
+                    <input type="text" name="recommendation" value=""  class="form-control">
+                    <br>
+                    <button type="submit" class="btn btn-primary ">Enviar</button>
+
+
+          <br>
+          <br>
+          <br>
+                </form>
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock%}
+
+{% block footer %}
+    {% include '_footer.html' %}
+{% endblock%}
