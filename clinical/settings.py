@@ -11,7 +11,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.15.33', 'https://clinicaldc.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.15.33', 'clinicaldc.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
