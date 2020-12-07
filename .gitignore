@@ -1,4 +1,7 @@
 .idea/
+.DS_STORE
 venv/
 *pycache*
 .manual
+*.sqlite3
+.env

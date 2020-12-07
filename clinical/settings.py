@@ -1,15 +1,17 @@
 import os
 from pathlib import Path
+from decouple import config
+from dj_database_url import parse as dburl
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = '-+9ttk+6-i&@-u+y93_xxp5txfya8@x9hxh=b+@z+0%f&u(br)'
+SECRET_KEY = config('SECRET_KEY')
 
 
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.15.33']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.15.33', 'https://clinicaldc.herokuapp.com/']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -65,11 +67,9 @@ WSGI_APPLICATION = 'clinical.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
 
 
@@ -115,6 +115,8 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'templates/static')
 ]
