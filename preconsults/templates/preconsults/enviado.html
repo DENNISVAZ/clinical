@@ -1,0 +1,45 @@
+{% extends 'default.html' %}
+
+{% block title %}
+    Pesquisa
+{% endblock %}
+
+{% block main%}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+
+        </div>
+        <div class="col-sm">
+            <form method="POST" action="{% url 'index_preconsults' %}">
+                {% csrf_token %}
+                <img src="/static/TimbradoCurado.jpg"
+                     class="img-fluid" alt="Imagem responsiva">
+                <br>
+                <br>
+                {% include '_messages.html' %}
+                <p class="text-black border-top">
+                    <br>
+                    Texto
+                    <br>
+                </p>
+                <p class="text-black border-top">
+                    <br>
+                    <a href="http://www.terra.com.br">site terra</a>
+                    <br>
+                </p>
+                <p class="text-black border-top">
+                </p>
+                <br>
+            </form>
+        </div>
+
+<div class="col-sm">
+</div>
+</div>
+</div>
+{% endblock%}
+
+{% block footer %}
+    {% include '_footer.html' %}
+{% endblock%}

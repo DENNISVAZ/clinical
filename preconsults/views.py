@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import preconsult
+from .models import Preconsult
 
 
 def preconsults(request):
@@ -23,8 +23,24 @@ def preconsults(request):
     # active = models.BooleanField(default=True)
     # creation_date = models.DateField(default=date.today)
     # creation_time = models.DateTimeField(default=timezone.now)
-    preconsulta = preconsult(name=name, phone=phone, age=age, profession=profession, surgery=surgery,
+    preconsulta = Preconsult(name=name, phone=phone, age=age, profession=profession, surgery=surgery,
                              expectancy=expectancy, fear=fear, recommendation=recommendation)
     preconsulta.save()
-    return render(request, 'preconsults/preconsultas.html')
+    messages.success ( request, 'Enviado com sucesso! Agradecemos seu contato.' )
+    surgery = request.POST.get('surgery').lower()
+    if 'rino' in surgery:
+        return render ( request, 'preconsults/enviado.html' )
+    else:
+        request.POST = []
+        return render ( request, 'preconsults/preconsultas.html' )
+
+def listpreconsults(request):
+    data = Preconsult.objects.order_by('-creation_time').filter(
+        active = True
+    )
+    return render(request, 'preconsults/list_preconsultas.html', {'dados':data})
+
+def detailpreconsults(request, preconsult_id):
+    preconsulta = Preconsult.objects.get(id=preconsult_id)
+    return render(request, 'preconsults/detalhe_preconsulta.html', {'preconsulta': preconsulta})
 

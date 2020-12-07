@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import date
 
-class preconsult(models.Model):
+class Preconsult(models.Model):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=40)
     age = models.CharField(max_length=3)
