@@ -1,7 +1,7 @@
 {% extends 'default.html' %}
 
 {% block title %}
-    Cirurgião Plástico
+    Lista Pré Consultas
 {% endblock %}
 
 {% block main%}
@@ -16,6 +16,7 @@
             <th scope="col">Idade</th>
             <th scope="col">Profissão</th>
             <th scope="col">Cirurgia</th>
+            <th scope="col">Rino</th>
         </tr>
     </thead>
     <tbody>
@@ -24,42 +25,64 @@
                 <td style="width:6.25em">
                     <a href="{% url 'detail_preconsults' data.id  %}" style="text-decoration:none">
                         <div style="height:100%;width:100%" class="text-body">
-                            {{ data.creation_time | date:'d/m/y' }}
+                            <small>
+                                {{ data.creation_time | date:'d/m/y' }}
+                            </small>
                         </div>
                     </a>
                 </td>
                 <td style="width:20.375em">
                     <a href="{% url 'detail_preconsults' data.id  %}" style="text-decoration:none">
                         <div style="height:100%;width:100%" class="text-body">
-                            {{ data.name | upper }}
+                            <small>
+                                {{ data.name | upper }}
+                            </small>
                         </div>
                     </a>
                 </td>
                 <td style="width:9.375em">
                     <a href="{% url 'detail_preconsults' data.id  %}" style="text-decoration:none">
                         <div style="height:100%;width:100%" class="text-body">
-                            {{ data.phone | upper }}
+                            <small>
+                                {{ data.phone | upper }}
+                            </small>
                         </div>
                     </a>
                 </td>
                 <td style="width:5.625em">
                     <a href="{% url 'detail_preconsults' data.id  %}" style="text-decoration:none">
                         <div style="height:100%;width:100%" class="text-body">
-                            {{ data.age | upper }}
+                            <small>
+                                {{ data.age | upper }}
+                            </small>
                         </div>
                     </a>
                 </td>
                 <td style="width:15.375em">
                     <a href="{% url 'detail_preconsults' data.id  %}" style="text-decoration:none">
                         <div style="height:100%;width:100%" class="text-body">
-                            {{ data.profession | upper }}
+                            <small>
+                                {{ data.profession | upper }}
+                            </small>
                         </div>
                     </a>
                 </td>
                 <td>
                     <a href="{% url 'detail_preconsults' data.id  %}" style="text-decoration:none">
                         <div style="height:100%;width:100%" class="text-body">
-                            {{ data.surgery | upper }}
+                            <small>
+                                {{ data.surgery | upper }}
+                            </small>
+                        </div>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'detail_preconsults' data.id  %}" style="text-decoration:none">
+                        <div style="height:100%;width:100%" class="text-body">
+                            {% if data.rhinoplasty %}
+                                <img src="/static/check.png" width="15m" height="15em"
+                                    class="img-fluid;" alt="Imagem responsiva">
+                            {% endif %}
                         </div>
                     </a>
                 </td>

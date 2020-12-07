@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.contrib import auth, messages
 from django.contrib.auth.models import User
 from .models import Preconsult
+from django.contrib.auth.decorators import login_required
 
 
 def preconsults(request):
@@ -34,12 +35,16 @@ def preconsults(request):
         request.POST = []
         return render ( request, 'preconsults/preconsultas.html' )
 
+
+@login_required(login_url='index')
 def listpreconsults(request):
     data = Preconsult.objects.order_by('-creation_time').filter(
         active = True
     )
     return render(request, 'preconsults/list_preconsultas.html', {'dados':data})
 
+
+@login_required(login_url='index')
 def detailpreconsults(request, preconsult_id):
     preconsulta = Preconsult.objects.get(id=preconsult_id)
     return render(request, 'preconsults/detalhe_preconsulta.html', {'preconsulta': preconsulta})
