@@ -1,16 +1,16 @@
 {% extends 'default.html' %}
 
 {% block title %}
-    Pré Consulta - Cadastro
+    Pré-Consulta - Cadastro
 {% endblock %}
 
 {% block main%}
-<div class="container">
+<div class="container ">
     <div class="row">
         <div class="col-sm">
 
         </div>
-        <div class="col-sm">
+        <div class="col-sm bg-dark text-white">
             <form method="POST" action="{% url 'index_preconsults' %}">
                 {% csrf_token %}
                 <img src="/static/TimbradoCurado.jpg"
@@ -38,7 +38,7 @@
                 <input type="text" name="profession"
                        value="{{ request.POST.profession}}"  class="form-control">
                 <label class="text-black">
-                    Cirurgia(s)*
+                    Cirurgia(s) desejada(s)*
                 </label>
                 <textarea type="text" rows="2" name="surgery"
                           class="form-control">{{ request.POST.surgery }}</textarea>
