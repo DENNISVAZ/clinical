@@ -41,7 +41,7 @@ def listpreconsults(request):
     data = Preconsult.objects.order_by('-creation_time').filter(
         active = True
     )
-    return render(request, 'preconsults/list_preconsultas.html', {'dados':data})
+    return render(request, 'preconsults/list_preconsultas.html', {'dados': data})
 
 
 @login_required(login_url='index')
