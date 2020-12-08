@@ -29,7 +29,7 @@ def preconsults(request):
     preconsulta.save()
     messages.success ( request, 'Enviado com sucesso! Agradecemos seu contato.' )
     surgery = request.POST.get('surgery').lower()
-    if 'rino' in surgery:
+    if ('rino' in surgery) or ('nariz' in surgery) or ('rhino' in surgery):
         return render ( request, 'preconsults/enviado.html' )
     else:
         request.POST = []
