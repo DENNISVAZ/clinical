@@ -79,14 +79,11 @@
                     </a>
                 </td>
                 <td>
-                    <a href="{% url 'detail_preconsults' data.id  %}" style="text-decoration:none">
-                        <div style="height:100%;width:100%" class="text-body">
-                    <strong>
-                    {{ data.rhinoplasty |yesno:'√,' }}
-                        </strong>
-                        </div>
-                    </a>
-
+                    {% if not data.rhinoplasty %}
+                    {% else %}
+                        <img src="/static/check.png" width="15em" height="15em"
+                     class="img-fluid;" alt="check">
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
