@@ -79,8 +79,8 @@
                     </a>
                 </td>
                 <td>
-                    {% if not data.rhinoplasty %}
-                    {% else %}
+
+                    {% if 'rino' in data.surgery.lower or 'rhino' in data.surgery.lower or 'nariz' in data.surgery.lower   %}
                         <img src="/static/check.png" width="15em" height="15em"
                      class="img-fluid;" alt="check">
                     {% endif %}
