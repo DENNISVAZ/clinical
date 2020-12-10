@@ -12,7 +12,6 @@ from django.core.paginator import Paginator
 def preconsults(request):
     if request.method != 'POST':
         return render(request, 'preconsults/preconsultas.html')
-
     name = request.POST.get('name')
     phone = request.POST.get('phone')
     age = request.POST.get('age')
@@ -30,11 +29,15 @@ def preconsults(request):
     # creation_time = models.DateTimeField(default=timezone.now)
     preconsulta = Preconsult(name=name, phone=phone, age=age, profession=profession, surgery=surgery,
                              expectancy=expectancy, fear=fear, recommendation=recommendation)
+    if ('rino' in surgery) or ('nariz' in surgery) or ('rhino' in surgery):
+        preconsulta.rhinoplasty = True
+    else:
+        preconsulta.rhinoplasty = False
     preconsulta.save()
     messages.success ( request, 'Enviado com sucesso! Agradecemos seu contato.' )
     surgery = request.POST.get('surgery').lower()
-    if ('rino' in surgery) or ('nariz' in surgery) or ('rhino' in surgery):
-        return render ( request, 'preconsults/enviado.html' )
+    if preconsulta.rhinoplasty:
+        return render (request, 'preconsults/enviado.html' )
     else:
         request.POST = []
         return render ( request, 'preconsults/preconsultas.html' )
@@ -54,8 +57,6 @@ def listpreconsults(request):
         last_date = request.POST.get('last_date')
         search = request.POST.get ( 'search' )
         page = request.GET.get('pg')
-
-
     if first_date > last_date:
         messages.error(request, 'Data Inicial deve ser anterior a data Final.')
     data = Preconsult.objects.order_by('-creation_time').filter(
@@ -78,6 +79,34 @@ def listpreconsults(request):
 
 @login_required(login_url='index')
 def detailpreconsults(request, preconsult_id):
+    # if request.method != 'POST':
+    #     delete = False
+    # else:
+    #     rinoplastia = request.POST.get('rino')
+    #
+    #     if rinoplastia == 'on':
+    #         rinoplastia = True
+    #     else:
+    #         rinoplastia = False
+    #     preconsulta = Preconsult(rhinoplasty=rinoplastia)
+    #     preconsulta.save()
+    #     messages.success(request, rinoplastia)
     preconsulta = Preconsult.objects.get(id=preconsult_id)
-    return render(request, 'preconsults/detalhe_preconsulta.html', {'preconsulta': preconsulta})
+
+
+    return render(request, 'preconsults/detalhe_preconsulta.html', {'preconsulta': preconsulta,
+                                                                    })
+    #
+
+def send(request):
+    if request.method == 'POST':
+        prec = Preconsult.objects.last()
+        preconsulta = Preconsult.objects.get(id=prec.id)
+        preconsulta.checklink = True
+        preconsulta.save()
+        return redirect('https://my.crisalix.com/signup/drcurado')
+    preconsulta = Preconsult.objects.last()
+
+
+    return render(request, 'preconsults/enviado.html', {'preconsulta': preconsulta })
 

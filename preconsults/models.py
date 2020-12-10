@@ -12,6 +12,7 @@ class Preconsult(models.Model):
     fear = models.TextField(max_length=1000)
     recommendation = models.TextField(max_length=100)
     rhinoplasty = models.BooleanField(default=False)
+    checklink = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
     creation_date = models.DateField(default=date.today)
     creation_time = models.DateTimeField(default=timezone.now)

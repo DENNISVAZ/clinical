@@ -1,3 +1,14 @@
 {% load static %}
 <script src="{% static 'vendor/jquery/jquery.slim.min.js'%}"></script>
 <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+<script>
+    let copiarTexto = (texto) => {
+        let inputTest = document.createElement("input");
+        inputTest.value = texto;
+        document.body.appendChild(inputTest);
+        inputTest.select();
+        document.execCommand('copy');
+        document.body.removeChild(inputTest);
+    };
+</script>
