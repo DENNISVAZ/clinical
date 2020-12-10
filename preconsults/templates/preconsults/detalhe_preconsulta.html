@@ -23,7 +23,13 @@
                 {% endif %}
             </p>
             <p class="text-black" style="background-color: rgba(220,220,220)">
-                {{ preconsulta.name | upper }}
+                <div class="row">
+                    <div class="col-sm">
+                        <input class="form-control form-sm" readonly
+                               style="background-color: rgba(220,220,220)"
+                                    type="text" value="{{ preconsulta.name | upper }}">
+                    </div>
+                </div>
             </p>
             <p class="text-black border-top">
                 <strong>
@@ -37,7 +43,26 @@
                 {% endif %}
             </p>
             <p class="text-black" style="background-color: rgba(220,220,220)">
-                {{ preconsulta.phone | upper }}
+            <div class="row">
+                <div class="col-2 ">
+                    <input class="form-control form-sm text-center"
+                       style="background-color: rgba(220,220,220)"
+                            type="text" name="valorTeste"
+                                id="ddi" value="55">
+                </div>
+                <div class="col-7">
+                    <input class="form-control form-sm text-center"
+                       style="background-color: rgba(220,220,220)"
+                            type="text" name="valorTeste"
+                                id="celular" value="{{ preconsulta.phone | upper }}">
+                </div>
+                <div class="col-3">
+                    <a class="btn btn-success text-white float-right"
+                    onclick="this.href='https://wa.me/'+document.getElementById('ddi').value+document.getElementById('celular').value+'?text='" >
+                     whatsapp
+                    </a>
+                </div>
+            </div>
             </p>
             <p class="text-black border-top">
                 <strong>
@@ -51,7 +76,13 @@
                 {% endif %}
             </p>
             <p class="text-black" style="background-color: rgba(220,220,220)">
-                {{ preconsulta.age | upper }}
+                <div class="row">
+                    <div class="col-sm">
+                        <input class="form-control form-sm" readonly
+                               style="background-color: rgba(220,220,220)"
+                                    type="text" value="{{ preconsulta.age | upper }}">
+                    </div>
+                </div>
             </p>
             <p class="text-black border-top">
                 <strong>
@@ -65,7 +96,13 @@
                 {% endif %}
             </p>
             <p class="text-black" style="background-color: rgba(220,220,220)">
-                {{ preconsulta.profession | upper }}
+                <div class="row">
+                    <div class="col-sm">
+                        <input class="form-control form-sm" readonly
+                               style="background-color: rgba(220,220,220)"
+                                    type="text" value="{{ preconsulta.profession | upper }}">
+                    </div>
+                </div>
             </p>
         </div>
         <div class="col-sm">
@@ -81,7 +118,13 @@
                 {% endif %}
             </p>
             <p class="text-black" style="background-color: rgba(220,220,220)">
-                {{ preconsulta.surgery | upper }}
+                <div class="row">
+                    <div class="col-sm">
+                        <input class="form-control form-sm" readonly
+                               style="background-color: rgba(220,220,220)"
+                                    type="text" value="{{ preconsulta.surgery | upper }}">
+                    </div>
+                </div>
             </p>
             <p class="text-black border-top">
                 <strong>
@@ -95,7 +138,13 @@
                 {% endif %}
             </p>
             <p class="text-black" style="background-color: rgba(220,220,220)">
-                {{ preconsulta.expectancy | upper }}
+                <div class="row">
+                    <div class="col-sm">
+                        <input class="form-control form-sm" readonly
+                               style="background-color: rgba(220,220,220)"
+                                    type="text" value="{{ preconsulta.expectancy | upper }}">
+                    </div>
+                </div>
             </p>
             <p class="text-black border-top">
                 <strong>
@@ -109,7 +158,13 @@
                 {% endif %}
             </p>
             <p class="text-black" style="background-color: rgba(220,220,220)">
-                {{ preconsulta.fear | upper }}
+                <div class="row">
+                    <div class="col-sm">
+                        <input class="form-control form-sm" readonly
+                               style="background-color: rgba(220,220,220)"
+                                    type="text" value="{{ preconsulta.fear | upper }}">
+                    </div>
+                </div>
             </p>
             <p class="text-black border-top">
                 <strong>
@@ -123,13 +178,26 @@
                 {% endif %}
             </p>
             <p class="text-black" style="background-color: rgba(220,220,220)">
-                {{ preconsulta.recommendation | upper }}
+                <div class="row">
+                    <div class="col-sm">
+                        <input class="form-control form-sm" readonly
+                               style="background-color: rgba(220,220,220)"
+                                    type="text" value="{{ preconsulta.recommendation | upper }}">
+                    </div>
+                </div>
             </p>
             <p class="text-black border-top">
                 <strong>Data e Hora</strong>
             </p>
             <p class="text-black" style="background-color: rgba(220,220,220)">
-                {{ preconsulta.creation_time | date:'d/m/y H:i:s' }}
+                <div class="row">
+                    <div class="col-sm">
+                        <input class="form-control form-sm" readonly
+                               style="background-color: rgba(220,220,220)"
+                                    type="text" value="{{ preconsulta.creation_time | date:'d/m/y H:i:s' }}">
+                    </div>
+                </div>
+
             </p>
             <p class="text-black border-top">
 
