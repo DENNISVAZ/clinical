@@ -11,7 +11,7 @@
     <br>
     <div class="row">
         <div class="col-sm">
-            <p class="text-black border-top ">
+            <p class="text-black border-top">
                 <strong>
                     Nome
                 </strong>
@@ -212,7 +212,12 @@
                 <button type="submit" class="btn btn-dark " onclick="self.close ()">
                     Fechar
                 </button>
+                <a class="btn btn-dark text-white float-right"
+                        href="{% url 'printdetail' preconsulta.id %}">
+                    PDF
+                </a>
             </form>
+
         </div>
     </div>
 </div>

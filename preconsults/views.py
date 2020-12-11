@@ -1,12 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 from django.contrib.auth.models import User
+from django.template.loader import get_template
+
 from .models import Preconsult
 from django.contrib.auth.decorators import login_required
 from datetime import date, timedelta
 from django.utils.dateformat import DateFormat
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.views.generic.base import View
+import xhtml2pdf.pisa as pisa
+from django.http import HttpResponse
+import io
 
 
 def preconsults(request):
@@ -110,3 +116,35 @@ def send(request):
 
     return render(request, 'preconsults/enviado.html', {'preconsulta': preconsulta })
 
+class Render:
+    @staticmethod
+    def render(path: str, params: dict, filename: str):
+        template = get_template(path)
+        html = template.render(params)
+        response = io.BytesIO()
+        pdf = pisa.pisaDocument(
+            io.BytesIO(html.encode('UTF-8')), response
+        )
+        if not pdf.err:
+            response = HttpResponse(
+                response.getvalue(), content_type='application/pdf'
+            )
+            response['Content-Disposition'] = 'attachment;filename=%s.pdf' % filename
+            return response
+        else:
+            return HttpResponse("Error para gerar PDF", status=400)
+
+
+
+
+def printdetail(request, preconsult_id):
+    preconsulta = Preconsult.objects.get(id=preconsult_id)
+    params = {
+        'dados': preconsulta,
+        'request': request,
+    }
+    if len(str(preconsulta.name).split()) > 1:
+        file_name = str(preconsulta.name).split()[0]+str(preconsulta.name).split()[1]
+    else:
+        file_name = str(preconsulta.name).split()[0]
+    return Render.render('preconsults/print_relatorio.html', params, file_name)

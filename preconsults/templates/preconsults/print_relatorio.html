@@ -1,0 +1,96 @@
+<style>
+    h1 {
+        color: black;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    p {
+        color: black;
+        font-size: 12px;
+        padding: 0 3em 0 3em;
+        text-align: justify;
+    }
+</style>
+<br>
+<h1>Detalhes da Preconsulta {{ dados.id }}</h1>
+<hr>
+<p>
+    <strong>
+        NOME
+    </strong>
+</p>
+<p>
+    {{ dados.name | upper }}
+</p>
+<hr>
+<p>
+    <strong>
+        TELEFONE
+    </strong>
+</p>
+<p>
+    {{ dados.phone | upper }}
+</p>
+<hr>
+<p>
+    <strong>
+        IDADE
+    </strong>
+</p>
+<p>
+    {{ dados.age | upper }}
+</p>
+<hr>
+<p>
+    <strong>
+        PROFISSÃO
+    </strong>
+</p>
+<p>
+    {{ dados.profession | upper }}
+</p>
+<hr>
+<p>
+    <strong>
+        CIRURGIAS
+    </strong>
+</p>
+<p>
+    {{ dados.surgery | upper }}
+</p>
+<hr>
+<p>
+    <strong>
+        EXPECTATIVA
+    </strong>
+</p>
+<p>
+    {{ dados.expectancy | upper }}
+</p>
+<hr>
+<p>
+    <strong>
+        MEDO
+    </strong>
+</p>
+<p>
+    {{ dados.fear | upper }}
+</p>
+<hr>
+<p>
+    <strong>
+        Indicação
+    </strong>
+</p>
+<p>
+    {{ dados.recommendation | upper }}
+</p>
+<hr>
+<p>
+    <strong>DATA</strong>
+</p>
+<p>
+    {{ dados.creation_time | date:'d/m/y H:i:s' }}
+</p>
+<hr>
