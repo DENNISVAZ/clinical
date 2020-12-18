@@ -58,7 +58,11 @@
                 </div>
                 <div class="col-3">
                     <a class="btn btn-success text-white float-right"
-                    onclick="this.href='https://wa.me/'+document.getElementById('ddi').value+document.getElementById('celular').value+'?text='" >
+                    onclick="this.href='https://wa.me/'+document.getElementById('ddi').value+document.getElementById('celular').value+
+                    '?text=Olá {{ preconsulta.name | upper }}.'+
+                    '%0DIdentificamos através da pré-consulta {{ preconsulta.id }}, o interesse em Rinoplastia.'+
+                    '%0DPara que possamos adiantar, solicitamos o acesso ao link abaixo e o envio das fotos.'+
+                    '%0Dhttps://my.crisalix.com/signup/drcurado'" >
                      whatsapp
                     </a>
                 </div>

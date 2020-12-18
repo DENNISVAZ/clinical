@@ -139,7 +139,14 @@ class Render:
 
 def printdetail(request, preconsult_id):
     preconsulta = Preconsult.objects.get(id=preconsult_id)
-    preconsulta.surgery.encode('ascii', 'ignore').decode('ascii')
+    preconsulta.name = preconsulta.name.encode('ascii', 'ignore').decode('utf-8')
+    preconsulta.phone = preconsulta.phone.encode('ascii', 'ignore').decode('utf-8')
+    preconsulta.age = preconsulta.age.encode('ascii', 'ignore').decode('utf-8')
+    preconsulta.profession = preconsulta.profession.encode('ascii', 'ignore').decode('utf-8')
+    preconsulta.surgery = preconsulta.surgery.encode('ascii', 'ignore').decode('utf-8')
+    preconsulta.expectancy = preconsulta.expectancy.encode('ascii', 'ignore').decode('utf-8')
+    preconsulta.fear = preconsulta.fear.encode('ascii', 'ignore').decode('utf-8')
+    preconsulta.recommendation = preconsulta.recommendation.encode('ascii', 'ignore').decode('utf-8')
     params = {
         'dados': preconsulta,
         'request': request,
