@@ -35,7 +35,7 @@ def preconsults(request):
     # creation_time = models.DateTimeField(default=timezone.now)
     preconsulta = Preconsult(name=name, phone=phone, age=age, profession=profession, surgery=surgery,
                              expectancy=expectancy, fear=fear, recommendation=recommendation)
-    if ('rino' in surgery) or ('nariz' in surgery) or ('rhino' in surgery):
+    if ('rino' in surgery.lower()) or ('nariz' in surgery.lower()) or ('rhino' in surgery.lower()):
         preconsulta.rhinoplasty = True
     else:
         preconsulta.rhinoplasty = False
@@ -123,7 +123,7 @@ class Render:
         html = template.render(params)
         response = io.BytesIO()
         pdf = pisa.pisaDocument(
-            io.BytesIO(html.encode('UTF-8')), response
+            io.BytesIO(html.encode('UTF-8')), response, encoding='UTF-8'
         )
         if not pdf.err:
             response = HttpResponse(
@@ -139,6 +139,7 @@ class Render:
 
 def printdetail(request, preconsult_id):
     preconsulta = Preconsult.objects.get(id=preconsult_id)
+    preconsulta.surgery.encode('ascii', 'ignore').decode('ascii')
     params = {
         'dados': preconsulta,
         'request': request,
