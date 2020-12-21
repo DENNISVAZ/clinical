@@ -68,26 +68,74 @@
                 </div>
             </div>
             </p>
-            <p class="text-black border-top">
-                <strong>
-                    Idade
-                </strong>
-                {% if preconsulta.age %}
-                    <button class="btn btn-secondary btn-sm btn-sm float-right"
-                            type="button" onclick="copiarTexto('{{preconsulta.age | upper}}')">
-                        Copiar
-                    </button>
-                {% endif %}
-            </p>
-            <p class="text-black" style="background-color: rgba(220,220,220)">
-                <div class="row">
-                    <div class="col-sm">
-                        <input class="form-control form-sm" readonly
-                               style="background-color: rgba(220,220,220)"
-                                    type="text" value="{{ preconsulta.age | upper }}">
-                    </div>
+            <div class="row">
+                <div class="col-sm">
+                    <p class="text-black border-top">
+                        <strong>
+                            Idade
+                        </strong>
+                        {% if preconsulta.age %}
+                            <button class="btn btn-secondary btn-sm btn-sm float-right"
+                                    type="button" onclick="copiarTexto('{{preconsulta.age | upper}}')">
+                                Copiar
+                            </button>
+                        {% endif %}
+                    </p>
+                    <p class="text-black" style="background-color: rgba(220,220,220)">
+                        <div class="row">
+                            <div class="col-sm">
+                                <input class="form-control form-sm" readonly
+                                       style="background-color: rgba(220,220,220)"
+                                            type="text" value="{{ preconsulta.age | upper }}">
+                            </div>
+                        </div>
+                    </p>
                 </div>
-            </p>
+                <div class="col-sm">
+                    <p class="text-black border-top">
+                        <strong>
+                            Altura
+                        </strong>
+                        {% if preconsulta.height %}
+                            <button class="btn btn-secondary btn-sm btn-sm float-right"
+                                    type="button" onclick="copiarTexto('{{preconsulta.height | upper}}')">
+                                Copiar
+                            </button>
+                        {% endif %}
+                    </p>
+                    <p class="text-black" style="background-color: rgba(220,220,220)">
+                        <div class="row">
+                            <div class="col-sm">
+                                <input class="form-control form-sm" readonly
+                                       style="background-color: rgba(220,220,220)"
+                                            type="text" value="{{ preconsulta.height | upper }}">
+                            </div>
+                        </div>
+                    </p>
+                </div>
+                <div class="col-sm">
+                    <p class="text-black border-top">
+                        <strong>
+                            Peso
+                        </strong>
+                        {% if preconsulta.weight %}
+                            <button class="btn btn-secondary btn-sm btn-sm float-right"
+                                    type="button" onclick="copiarTexto('{{preconsulta.weight | upper}}')">
+                                Copiar
+                            </button>
+                        {% endif %}
+                    </p>
+                    <p class="text-black" style="background-color: rgba(220,220,220)">
+                        <div class="row">
+                            <div class="col-sm">
+                                <input class="form-control form-sm" readonly
+                                       style="background-color: rgba(220,220,220)"
+                                            type="text" value="{{ preconsulta.weight | upper }}">
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
             <p class="text-black border-top">
                 <strong>
                     Profissão

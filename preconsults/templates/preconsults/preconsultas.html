@@ -27,11 +27,29 @@
                 </label>
                 <input type="text" name="phone"
                        value="{{ request.POST.phone }}"  class="form-control">
-                <label class="text-black">
-                    Idade*
-                </label>
-                <input type="text" name="age"
-                       value="{{ request.POST.age}}"  class="form-control">
+                <div class="row">
+                    <div class="col-sm">
+                        <label class="text-black">
+                            Idade*
+                        </label>
+                        <input type="text" name="age"
+                               value="{{ request.POST.age }}"  class="form-control">
+                    </div>
+                    <div class="col-sm">
+                        <label class="text-black">
+                            Altura*
+                        </label>
+                        <input type="text" name="height"
+                               value="{{ request.POST.height}}"  class="form-control">
+                    </div>
+                    <div class="col-sm">
+                        <label class="text-black">
+                            Peso*
+                        </label>
+                        <input type="text" name="weight"
+                               value="{{ request.POST.weight}}"  class="form-control">
+                    </div>
+                </div>
                 <label class="text-black">
                     Profissão*
                 </label>

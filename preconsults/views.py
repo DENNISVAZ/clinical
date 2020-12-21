@@ -23,17 +23,26 @@ def preconsults(request):
     age = request.POST.get('age')
     profession = request.POST.get('profession')
     surgery = request.POST.get('surgery')
+    height = request.POST.get('height')
+    weight = request.POST.get('weight')
     expectancy = request.POST.get('expectancy')
     fear = request.POST.get('fear')
     recommendation = request.POST.get('recommendation')
-    if not name or not phone or not age or not profession or not surgery:
+    if not name \
+            or not phone \
+            or not age \
+            or not height \
+            or not weight \
+            or not profession \
+            or not surgery:
         messages.error(request, 'Campos obrigatórios (*)')
         return render(request, 'preconsults/preconsultas.html')
     # rhinoplasty = request.POST.get('name')
     # active = models.BooleanField(default=True)
     # creation_date = models.DateField(default=date.today)
     # creation_time = models.DateTimeField(default=timezone.now)
-    preconsulta = Preconsult(name=name, phone=phone, age=age, profession=profession, surgery=surgery,
+    preconsulta = Preconsult(name=name, phone=phone, age=age, height=height, weight=weight,
+                             profession=profession, surgery=surgery,
                              expectancy=expectancy, fear=fear, recommendation=recommendation)
     if ('rino' in surgery.lower()) or ('nariz' in surgery.lower()) or ('rhino' in surgery.lower()):
         preconsulta.rhinoplasty = True
@@ -138,10 +147,20 @@ class Render:
 
 
 def printdetail(request, preconsult_id):
+    phone_str = 'TELEFONE'.ljust(40)
+    age_str = 'IDADE'.ljust(15)
+    height_str = 'ALTURA'.ljust(15)
+    weight_str = 'PESO'.ljust(15)
     preconsulta = Preconsult.objects.get(id=preconsult_id)
     preconsulta.name = preconsulta.name.encode('ascii', 'ignore').decode('utf-8')
     preconsulta.phone = preconsulta.phone.encode('ascii', 'ignore').decode('utf-8')
+    preconsulta.phone = preconsulta.phone.ljust(40)
     preconsulta.age = preconsulta.age.encode('ascii', 'ignore').decode('utf-8')
+    preconsulta.age = preconsulta.age.ljust(15)
+    preconsulta.height = preconsulta.height.encode('ascii', 'ignore').decode('utf-8')
+    preconsulta.height = preconsulta.height.ljust(15)
+    preconsulta.weight = preconsulta.weight.encode('ascii', 'ignore').decode('utf-8')
+    preconsulta.weight = preconsulta.weight.ljust(15)
     preconsulta.profession = preconsulta.profession.encode('ascii', 'ignore').decode('utf-8')
     preconsulta.surgery = preconsulta.surgery.encode('ascii', 'ignore').decode('utf-8')
     preconsulta.expectancy = preconsulta.expectancy.encode('ascii', 'ignore').decode('utf-8')
@@ -150,6 +169,10 @@ def printdetail(request, preconsult_id):
     params = {
         'dados': preconsulta,
         'request': request,
+        'phone_str': phone_str,
+        'age_str': age_str,
+        'height_str': height_str,
+        'weight_str': weight_str
     }
     if len(str(preconsulta.name).split()) > 1:
         file_name = str(preconsulta.name).split()[0]+str(preconsulta.name).split()[1]

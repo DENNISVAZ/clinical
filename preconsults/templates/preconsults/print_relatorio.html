@@ -6,7 +6,7 @@
         font-size: 16px;
         font-weight: bold;
     }
-    p {
+    p, pre {
         color: black;
         font-size: 12px;
         padding: 0 3em 0 3em;
@@ -27,22 +27,12 @@
 </p>
 <hr>
 <p>
-    <strong>
-        TELEFONE
-    </strong>
-</p>
-<p>
-    {{ dados.phone | upper }}
-</p>
-<hr>
-<p>
-    <strong>
-        IDADE
-    </strong>
-</p>
-<p>
-    {{ dados.age | upper }}
-</p>
+<pre>
+<strong>{{ phone_str }}{{ age_str }}{{ height_str }}{{ weight_str }}</strong>
+</pre>
+<pre>
+{{ dados.phone | upper }}{{ dados.age | upper }}{{ dados.height | upper }}{{ dados.weight | upper }}
+</pre>
 <hr>
 <p>
     <strong>

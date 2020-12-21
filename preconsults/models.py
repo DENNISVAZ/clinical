@@ -6,6 +6,8 @@ class Preconsult(models.Model):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=40)
     age = models.CharField(max_length=100)
+    height = models.CharField(max_length=100)
+    weight = models.CharField(max_length=100)
     profession = models.CharField(max_length=50)
     surgery = models.TextField(max_length=500)
     expectancy = models.TextField(max_length=1000)
