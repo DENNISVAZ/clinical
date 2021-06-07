@@ -18,6 +18,16 @@ class Preconsult(models.Model):
     active = models.BooleanField(default=True)
     creation_date = models.DateField(default=date.today)
     creation_time = models.DateTimeField(default=timezone.now)
+    check_prosthesis = models.BooleanField(default=False)
+    check_mastopexy = models.BooleanField(default=False)
+    check_liposculpture = models.BooleanField(default=False)
+    check_abdominoplasty = models.BooleanField(default=False)
+    check_lifting = models.BooleanField(default=False)
+    check_rinoplasty = models.BooleanField(default=False)
+    check_otoplasty = models.BooleanField(default=False)
+    check_nymphoplasty = models.BooleanField(default=False)
+    date_operate = models.CharField(max_length=10)
+    type_rinoplasty = models.CharField(max_length=15)
 
     def __str__(self):
         return self.name

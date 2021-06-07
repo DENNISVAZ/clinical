@@ -11,13 +11,94 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from django.views.generic.base import View
 import xhtml2pdf.pisa as pisa
+import datetime
 from django.http import HttpResponse
 import io
 
 
 def preconsults(request):
+    mes_atual = date.today().month; ano_atual = date.today().year;
+    mes1 = str(mes_atual).zfill(2) +'/'+ str(ano_atual)
+    mes_atual = mes_atual + 1;
+    if mes_atual > 12:
+        mes_atual = 1
+        ano_atual = ano_atual + 1
+    mes2 = str ( mes_atual ).zfill ( 2 ) + '/' + str ( ano_atual )
+    mes_atual = mes_atual + 1;
+    if mes_atual > 12:
+        mes_atual = 1
+        ano_atual = ano_atual + 1
+    mes3 = str ( mes_atual ).zfill ( 2 ) + '/' + str ( ano_atual )
+    mes_atual = mes_atual + 1;
+    if mes_atual > 12:
+        mes_atual = 1
+        ano_atual = ano_atual + 1
+    mes4 = str ( mes_atual ).zfill ( 2 ) + '/' + str ( ano_atual )
+    mes_atual = mes_atual + 1;
+    if mes_atual > 12:
+        mes_atual = 1
+        ano_atual = ano_atual + 1
+    mes5 = str ( mes_atual ).zfill ( 2 ) + '/' + str ( ano_atual )
+    mes_atual = mes_atual + 1;
+    if mes_atual > 12:
+        mes_atual = 1
+        ano_atual = ano_atual + 1
+    mes6 = str ( mes_atual ).zfill ( 2 ) + '/' + str ( ano_atual )
+    mes_atual = mes_atual + 1;
+    if mes_atual > 12:
+        mes_atual = 1
+        ano_atual = ano_atual + 1
+    mes7 = str ( mes_atual ).zfill ( 2 ) + '/' + str ( ano_atual )
+    mes_atual = mes_atual + 1;
+    if mes_atual > 12:
+        mes_atual = 1
+        ano_atual = ano_atual + 1
+    mes8 = str ( mes_atual ).zfill ( 2 ) + '/' + str ( ano_atual )
+    mes_atual = mes_atual + 1;
+    if mes_atual > 12:
+        mes_atual = 1
+        ano_atual = ano_atual + 1
+    mes9 = str ( mes_atual ).zfill ( 2 ) + '/' + str ( ano_atual )
+    mes_atual = mes_atual + 1;
+    if mes_atual > 12:
+        mes_atual = 1
+        ano_atual = ano_atual + 1
+    mes10 = str ( mes_atual ).zfill ( 2 ) + '/' + str ( ano_atual )
+    mes_atual = mes_atual + 1;
+    if mes_atual > 12:
+        mes_atual = 1
+        ano_atual = ano_atual + 1
+    mes11 = str ( mes_atual ).zfill ( 2 ) + '/' + str ( ano_atual )
+    mes_atual = mes_atual + 1;
+    if mes_atual > 12:
+        mes_atual = 1
+        ano_atual = ano_atual + 1
+    mes12 = str ( mes_atual ).zfill ( 2 ) + '/' + str ( ano_atual )
+    params = {
+        'mes1': mes1,
+        'mes2': mes2,
+        'mes3': mes3,
+        'mes4': mes4,
+        'mes5': mes5,
+        'mes6': mes6,
+        'mes7': mes7,
+        'mes8': mes8,
+        'mes9': mes9,
+        'mes10': mes10,
+        'mes11': mes11,
+        'mes12': mes12,
+    }
     if request.method != 'POST':
-        return render(request, 'preconsults/preconsultas.html')
+        check_prosthesis = False
+        check_mastopexy = False
+        check_liposculpture = False
+        check_abdominoplasty = False
+        check_lifting = False
+        check_rinoplasty = False
+        check_otoplasty = False
+        check_nymphoplasty = False
+
+        return render(request, 'preconsults/preconsultas.html', params)
     name = request.POST.get('name')
     phone = request.POST.get('phone')
     age = request.POST.get('age')
@@ -28,23 +109,77 @@ def preconsults(request):
     expectancy = request.POST.get('expectancy')
     fear = request.POST.get('fear')
     recommendation = request.POST.get('recommendation')
+    check_prosthesis = request.POST.get('check_prosthesis', False)
+    check_mastopexy = request.POST.get('check_mastopexy', False)
+    check_liposculpture = request.POST.get('check_liposculpture', False)
+    check_abdominoplasty = request.POST.get('check_abdominoplasty', False)
+    check_rinoplasty = request.POST.get ( 'check_rinoplasty' , False)
+    check_lifting = request.POST.get('check_lifting', False)
+    check_otoplasty = request.POST.get('check_otoplasty', False)
+    check_nymphoplasty = request.POST.get('check_nymphoplasty', False)
+    date_operate = request.POST.get('date_operate', '')
     if not name \
             or not phone \
             or not age \
             or not height \
             or not weight \
+            or date_operate == 'Selecione'\
             or not profession \
-            or not surgery:
+            or (not check_prosthesis and not surgery and not check_mastopexy
+                and not check_liposculpture
+                and not check_abdominoplasty and not check_lifting and not check_rinoplasty
+                and not check_otoplasty and not check_nymphoplasty):
         messages.error(request, 'Campos obrigatórios (*)')
-        return render(request, 'preconsults/preconsultas.html')
+        return render(request, 'preconsults/preconsultas.html', params)
     # rhinoplasty = request.POST.get('name')
     # active = models.BooleanField(default=True)
     # creation_date = models.DateField(default=date.today)
     # creation_time = models.DateTimeField(default=timezone.now)
+    if check_prosthesis == 'on':
+        check_prosthesis = True
+    else:
+        check_prosthesis = False
+    if check_mastopexy == 'on':
+        check_mastopexy = True
+    else:
+        check_mastopexy = False
+    if check_liposculpture == 'on':
+        check_liposculpture = True
+    else:
+        check_liposculpture = False
+    if check_abdominoplasty == 'on':
+        check_abdominoplasty = True
+    else:
+        check_abdominoplasty = False
+    if check_lifting == 'on':
+        check_lifting = True
+    else:
+        check_lifting = False
+    if check_rinoplasty == 'on':
+        check_rinoplasty = True
+    else:
+        check_rinoplasty = False
+    if check_otoplasty == 'on':
+        check_otoplasty = True
+    else:
+        check_otoplasty = False
+    if check_nymphoplasty == 'on':
+        check_nymphoplasty = True
+    else:
+        check_nymphoplasty = False
     preconsulta = Preconsult(name=name, phone=phone, age=age, height=height, weight=weight,
                              profession=profession, surgery=surgery,
-                             expectancy=expectancy, fear=fear, recommendation=recommendation)
-    if ('rino' in surgery.lower()) or ('nariz' in surgery.lower()) or ('rhino' in surgery.lower()):
+                             expectancy=expectancy, fear=fear, recommendation=recommendation,
+                             check_prosthesis=check_prosthesis,
+                             check_mastopexy=check_mastopexy,
+                             check_liposculpture=check_liposculpture,
+                             check_abdominoplasty=check_abdominoplasty,
+                             check_lifting=check_lifting,
+                             check_rinoplasty=check_rinoplasty,
+                             check_otoplasty=check_otoplasty,
+                             check_nymphoplasty=check_nymphoplasty,
+                             date_operate=date_operate)
+    if ('rino' in surgery.lower()) or ('nariz' in surgery.lower()) or ('rhino' in surgery.lower()) or (check_rinoplasty):
         preconsulta.rhinoplasty = True
     else:
         preconsulta.rhinoplasty = False
@@ -52,10 +187,11 @@ def preconsults(request):
     messages.success ( request, 'Enviado com sucesso! Agradecemos seu contato.' )
     surgery = request.POST.get('surgery').lower()
     if preconsulta.rhinoplasty:
+
         return render (request, 'preconsults/enviado.html' )
     else:
         request.POST = []
-        return render ( request, 'preconsults/preconsultas.html' )
+        return render ( request, 'preconsults/preconsultas.html' , params)
 
 
 @login_required(login_url='index')

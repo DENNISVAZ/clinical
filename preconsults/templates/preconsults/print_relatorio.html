@@ -6,7 +6,13 @@
         font-size: 16px;
         font-weight: bold;
     }
-    p, pre {
+    p {
+        color: black;
+        font-size: 12px;
+        padding: 0 3em 0 3em;
+        text-align: justify;
+      }
+    pre {
         color: black;
         font-size: 12px;
         padding: 0 3em 0 3em;
@@ -14,7 +20,6 @@
       }
 
 </style>
-<br>
 <h1>Detalhes da Preconsulta {{ dados.id }}</h1>
 <hr>
 <p>
@@ -33,6 +38,7 @@
 <pre>
 {{ dados.phone | upper }}{{ dados.age | upper }}{{ dados.height | upper }}{{ dados.weight | upper }}
 </pre>
+</p>
 <hr>
 <p>
     <strong>
@@ -49,6 +55,14 @@
     </strong>
 </p>
 <p>
+    {% if dados.check_rinoplasty == True %}[X] RINOPLASTIA ( SOMENTE PRIMÁRIA );<br>{% endif %}
+    {% if dados.check_prosthesis == True %}[X] PRÓTESE DE MAMA ( SEM RETIRADA DE PELE );<br> {% endif %}
+    {% if dados.check_mastopexy == True %}[X] MASTOPEXIA COM PRÓTESE ( COM RETIRADA DE PELE );<br> {% endif %}
+    {% if dados.check_liposculpture == True %}[X] LIPOESCULTURA;<br> {% endif %}
+    {% if dados.check_abdominoplasty == True %}[X] ABDOMINOPLASTIA OU MINI-ABDOME;<br> {% endif %}
+    {% if dados.check_lifting == True %}[X] LIFTING FACIAL;<br> {% endif %}
+    {% if dados.check_otoplasty == True %}[X] OTOPLASTIA<br> {% endif %}
+    {% if dados.check_nymphoplasty == True %}[X] NINFOPLASTIA;<br> {% endif %}
     {{ dados.surgery | upper }}
 </p>
 <hr>
@@ -80,9 +94,5 @@
 </p>
 <hr>
 <p>
-    <strong>DATA</strong>
-</p>
-<p>
-    {{ dados.creation_time | date:'d/m/y H:i:s' }}
-</p>
+<strong>DATA DO CADASTRO:</strong> {{ dados.creation_time | date:'d/m/y H:i:s' }} <strong>- DATA QUE DESEJA OPERAR:</strong> {{ dados.date_operate }}</p>
 <hr>

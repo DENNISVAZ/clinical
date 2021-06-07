@@ -172,7 +172,7 @@
                     <div class="col-sm">
                         <textarea  class="form-control form-sm" readonly
                                style="background-color: rgba(220,220,220)"
-                                    type="text" rows="3">{{ preconsulta.surgery | upper }}
+                                    type="text" rows="3">{% if preconsulta.check_rinoplasty == True %}[X] RINOPLASTIA ( SOMENTE PRIMÁRIA ); {% endif %}{% if preconsulta.check_prosthesis == True %}[X] PRÓTESE DE MAMA ( SEM RETIRADA DE PELE ); {% endif %}{% if preconsulta.check_mastopexy == True %}[X] MASTOPEXIA COM PRÓTESE ( COM RETIRADA DE PELE ); {% endif %}{% if preconsulta.check_liposculpture == True %}[X] LIPOESCULTURA; {% endif %}{% if preconsulta.check_abdominoplasty == True %}[X] ABDOMINOPLASTIA OU MINI-ABDOME; {% endif %}{% if preconsulta.check_lifting == True %}[X] LIFTING FACIAL; {% endif %}{% if preconsulta.check_otoplasty == True %}[X] OTOPLASTIA; {% endif %}{% if preconsulta.check_nymphoplasty == True %}[X] NINFOPLASTIA; {% endif %}{{ preconsulta.surgery | upper }}
                             </textarea>
                     </div>
                 </div>
@@ -243,21 +243,48 @@
                     </div>
                 </div>
             </p>
-            <p class="text-black border-top">
-                <strong>Data e Hora</strong>
-            </p>
-            <p class="text-black" style="background-color: rgba(220,220,220)">
-                <div class="row">
-                    <div class="col-sm">
-                        <input class="form-control form-sm" readonly
-                               style="background-color: rgba(220,220,220)"
-                                    type="text" value="{{ preconsulta.creation_time | date:'d/m/y H:i:s' }}">
-                    </div>
+            <div class="row">
+                <div class="col-sm">
+                    <p class="text-black border-top">
+                        <strong>
+                            Quando operar
+                        </strong>
+                        {% if preconsulta.age %}
+                            <button class="btn btn-secondary btn-sm btn-sm float-right"
+                                    type="button" onclick="copiarTexto('{{preconsulta.date_operate | upper}}')">
+                                Copiar
+                            </button>
+                        {% endif %}
+                    </p>
+                    <p class="text-black" style="background-color: rgba(220,220,220)">
+                        <div class="row">
+                            <div class="col-sm">
+                                <input class="form-control form-sm" readonly
+                                       style="background-color: rgba(220,220,220);text-align:center"
+                                            type="text" value="{{ preconsulta.date_operate | upper }}">
+                            </div>
+                        </div>
+                    </p>
+                </div>
+                <div class="col-sm">
+                    <p class="text-black border-top">
+                        <strong>
+                            Data e Hora
+                        </strong>
+                    </p>
+                    <p class="text-black" style="background-color: rgba(220,220,220)">
+                        <div class="row">
+                            <div class="col-sm">
+                                <input class="form-control form-sm" readonly
+                                       style="background-color: rgba(220,220,220);text-align:center"
+                                            type="text" value="{{ preconsulta.creation_time | date:'d/m/y H:i:s' }}">
+                            </div>
+                        </div>
+                    </p>
                 </div>
 
-            </p>
+            </div>
             <p class="text-black border-top">
-
             </p>
             <form method="POST" >
                 {% csrf_token %}

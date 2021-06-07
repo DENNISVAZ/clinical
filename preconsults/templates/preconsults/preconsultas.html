@@ -8,7 +8,6 @@
 <div class="container ">
     <div class="row">
         <div class="col-sm">
-
         </div>
         <div class="col-sm  text-white" style="background-color: rgba(0,0,0)">
             <form method="POST" action="{% url 'index_preconsults' %}">
@@ -17,64 +16,307 @@
                      class="img-fluid" alt="Imagem responsiva">
                 <br>
                 {% include '_messages.html' %}
-                <label class="text-black">
-                    Nome completo*
+                <label class="text-black" >
+                    Nome completo *
                 </label>
+                {% if not request.POST.name  %}
                 <input type="text" name="name"
-                       value="{{ request.POST.name}}"  class="form-control">
+                       value="{{ request.POST.name}}"  class="form-control" style="border-color:red;border-width:2">
+                {% else %}
+                <input type="text" name="name"
+                           value="{{ request.POST.name}}"  class="form-control" style="border-color:green;border-width:2">
+                {% endif %}
                 <label class="text-black">
-                    Telefone*
+                    Telefone *
                 </label>
+                {% if not request.POST.phone  %}
                 <input type="text" name="phone"
-                       value="{{ request.POST.phone }}"  class="form-control">
+                       value="{{ request.POST.phone}}"  class="form-control" style="border-color:red;border-width:2">
+                {% else %}
+                <input type="text" name="phone"
+                           value="{{ request.POST.phone}}"  class="form-control" style="border-color:green;border-width:2">
+                {% endif %}
                 <div class="row">
                     <div class="col-sm">
                         <label class="text-black">
-                            Idade*
+                            Idade *
                         </label>
+                        {% if not request.POST.age  %}
                         <input type="text" name="age"
-                               value="{{ request.POST.age }}"  class="form-control">
+                               value="{{ request.POST.age}}"  class="form-control" style="border-color:red;border-width:2">
+                        {% else %}
+                        <input type="text" name="age"
+                                   value="{{ request.POST.age}}"  class="form-control" style="border-color:green;border-width:2">
+                        {% endif %}
                     </div>
                     <div class="col-sm">
                         <label class="text-black">
-                            Altura*
+                            Altura *
                         </label>
+                        {% if not request.POST.height  %}
                         <input type="text" name="height"
-                               value="{{ request.POST.height}}"  class="form-control">
+                               value="{{ request.POST.height}}"  class="form-control" style="border-color:red;border-width:2">
+                        {% else %}
+                        <input type="text" name="height"
+                                   value="{{ request.POST.height}}"  class="form-control" style="border-color:green;border-width:2">
+                        {% endif %}
                     </div>
                     <div class="col-sm">
                         <label class="text-black">
-                            Peso*
+                            Peso *
                         </label>
+                        {% if not request.POST.weight  %}
                         <input type="text" name="weight"
-                               value="{{ request.POST.weight}}"  class="form-control">
+                               value="{{ request.POST.weight}}"  class="form-control" style="border-color:red;border-width:2">
+                        {% else %}
+                        <input type="text" name="weight"
+                                   value="{{ request.POST.weight}}"  class="form-control" style="border-color:green;border-width:2">
+                        {% endif %}
                     </div>
                 </div>
                 <label class="text-black">
-                    Profissão*
+                    Profissão *
                 </label>
+                {% if not request.POST.profession  %}
                 <input type="text" name="profession"
-                       value="{{ request.POST.profession}}"  class="form-control">
+                       value="{{ request.POST.profession}}"  class="form-control" style="border-color:red;border-width:2">
+                {% else %}
+                <input type="text" name="profession"
+                           value="{{ request.POST.profession}}"  class="form-control" style="border-color:green;border-width:2">
+                {% endif %}
+                <hr noshade style="color:white"  />
                 <label class="text-black">
-                    Cirurgia(s) desejada(s)*
+                    Cirurgia(s) que deseja realizar *
                 </label>
-                <textarea type="text" rows="2" name="surgery"
+                <br/>
+                {% if  request.POST.check_rinoplasty  == 'on' %}
+                    <input type="checkbox" checked name="check_rinoplasty" >
+                {% else %}
+                    <input type="checkbox" name="check_rinoplasty" >
+                {% endif %}
+                    Rinoplastia <strong> (somente primária)</strong>
+                <br>
+                {% if  request.POST.check_prosthesis  == 'on' %}
+                    <input type="checkbox" checked name="check_prosthesis" >
+                {% else %}
+                    <input type="checkbox" name="check_prosthesis" >
+                {% endif %}
+                    Prótese de mama (sem retirada de pele)
+                <br />
+                {% if  request.POST.check_mastopexy  == 'on' %}
+                    <input type="checkbox" checked name="check_mastopexy" >
+                {% else %}
+                    <input type="checkbox" name="check_mastopexy" >
+                {% endif %}
+                    Mastopexia com prótese (com retirada de pele)
+                <br />
+                {% if  request.POST.check_liposculpture  == 'on' %}
+                    <input type="checkbox" checked name="check_liposculpture" >
+                {% else %}
+                    <input type="checkbox" name="check_liposculpture" >
+                {% endif %}
+                    Lipoescultura
+                <br />
+                {% if  request.POST.check_abdominoplasty  == 'on' %}
+                    <input type="checkbox" checked name="check_abdominoplasty" >
+                {% else %}
+                    <input type="checkbox" name="check_abdominoplasty" >
+                {% endif %}
+                    Abdominoplastia ou mini-abdome
+                <br />
+                {% if  request.POST.check_lifting  == 'on' %}
+                    <input type="checkbox" checked name="check_lifting" >
+                {% else %}
+                    <input type="checkbox" name="check_lifting" >
+                {% endif %}
+                    Lifting facial
+                <br />
+                {% if  request.POST.check_otoplasty  == 'on' %}
+                    <input type="checkbox" checked name="check_otoplasty" >
+                {% else %}
+                    <input type="checkbox" name="check_otoplasty" >
+                {% endif %}
+                    Otoplastia
+                <br />
+                {% if  request.POST.check_nymphoplasty  == 'on' %}
+                    <input type="checkbox" checked name="check_nymphoplasty" >
+                {% else %}
+                    <input type="checkbox" name="check_nymphoplasty" >
+                {% endif %}
+                    Ninfoplastia
+                <hr noshade style="color:white" />
+                <label class="text-black">
+                    Outras
+                </label>
+                {% if not request.POST.surgery  %}
+                <textarea type="text" rows="2" name="surgery" style="border-color:red;border-width:2"
                           class="form-control">{{ request.POST.surgery }}</textarea>
+                {% else %}
+                <textarea type="text" rows="2" name="surgery" style="border-color:green;border-width:2"
+                          class="form-control">{{ request.POST.surgery }}</textarea>
+                {% endif %}
                 <label class="text-black">
                     Qual sua expectativa em relação a(s) cirurgia(s)
                 </label>
-                <textarea type="text" rows="2" name="expectancy"
+                {% if not request.POST.expectancy  %}
+                <textarea type="text" rows="2" name="expectancy" style="border-color:red;border-width:2"
                           class="form-control">{{ request.POST.expectancy }}</textarea>
+                {% else %}
+                <textarea type="text" rows="2" name="expectancy" style="border-color:green;border-width:2"
+                          class="form-control">{{ request.POST.expectancy }}</textarea>
+                {% endif %}
                 <label class="text-black">
                     Qual seu medo em relação a(s) cirurgia(s)
                 </label>
-                <textarea type="text" rows="2" name="fear"
+                {% if not request.POST.fear  %}
+                <textarea type="text" rows="2" name="fear" style="border-color:red;border-width:2"
                           class="form-control">{{ request.POST.fear }}</textarea>
+                {% else %}
+                <textarea type="text" rows="2" name="fear" style="border-color:green;border-width:2"
+                          class="form-control">{{ request.POST.fear }}</textarea>
+                {% endif %}
                 <label class="text-black">
                     Indicação
                 </label>
-                <input type="text" name="recommendation"
+                {% if not request.POST.recommendation  %}
+                <input type="text" name="recommendation" style="border-color:red;border-width:2"
                        value="{{ request.POST.recommendation }}"  class="form-control">
+                {% else %}
+                <input type="text" name="recommendation" style="border-color:green;border-width:2"
+                       value="{{ request.POST.recommendation }}"  class="form-control">
+                {% endif %}
+                <label class="text-black">
+                    Mês e Ano que deseja operar *
+                </label>
+                {% if request.POST.date_operate == "Selecione" or not request.POST.date_operate%}
+                <select name="date_operate" class="form-control" style="border-color:red;border-width:2">
+                  <option value="Selecione">Selecione</option>
+                    {% if  request.POST.date_operate  == mes1 %}
+                        <option value="{{ mes1 }}" selected>{{ mes1 }}</option>
+                    {% else %}
+                        <option value="{{ mes1 }}" >{{ mes1 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes2 %}
+                        <option value="{{ mes2 }}" selected>{{ mes2 }}</option>
+                    {% else %}
+                        <option value="{{ mes2 }}" >{{ mes2 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes3 %}
+                        <option value="{{ mes3 }}" selected>{{ mes3 }}</option>
+                    {% else %}
+                        <option value="{{ mes3 }}" >{{ mes3 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes4 %}
+                        <option value="{{ mes4 }}" selected>{{ mes4 }}</option>
+                    {% else %}
+                        <option value="{{ mes4 }}" >{{ mes4 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes5 %}
+                        <option value="{{ mes5 }}" selected>{{ mes5 }}</option>
+                    {% else %}
+                        <option value="{{ mes5 }}" >{{ mes5 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes6 %}
+                        <option value="{{ mes6 }}" selected>{{ mes6 }}</option>
+                    {% else %}
+                        <option value="{{ mes6 }}" >{{ mes6 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes7 %}
+                        <option value="{{ mes7 }}" selected>{{ mes7 }}</option>
+                    {% else %}
+                        <option value="{{ mes7 }}" >{{ mes7 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes8 %}
+                        <option value="{{ mes8 }}" selected>{{ mes8 }}</option>
+                    {% else %}
+                        <option value="{{ mes8 }}" >{{ mes8 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes9 %}
+                        <option value="{{ mes9 }}" selected>{{ mes9 }}</option>
+                    {% else %}
+                        <option value="{{ mes9 }}" >{{ mes9 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes10 %}
+                        <option value="{{ mes10 }}" selected>{{ mes10 }}</option>
+                    {% else %}
+                        <option value="{{ mes10 }}" >{{ mes10 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes11 %}
+                        <option value="{{ mes11 }}" selected>{{ mes11 }}</option>
+                    {% else %}
+                        <option value="{{ mes11 }}" >{{ mes11 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes12 %}
+                        <option value="{{ mes12 }}" selected>{{ mes12 }}</option>
+                    {% else %}
+                        <option value="{{ mes12 }}" >{{ mes12 }}</option>
+                    {% endif %}
+                </select>
+                {% else %}
+                <select name="date_operate" class="form-control" style="border-color:green;border-width:2">
+                  <option value="Selecione">Selecione</option>
+                    {% if  request.POST.date_operate  == mes1 %}
+                        <option value="{{ mes1 }}" selected>{{ mes1 }}</option>
+                    {% else %}
+                        <option value="{{ mes1 }}" >{{ mes1 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes2 %}
+                        <option value="{{ mes2 }}" selected>{{ mes2 }}</option>
+                    {% else %}
+                        <option value="{{ mes2 }}" >{{ mes2 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes3 %}
+                        <option value="{{ mes3 }}" selected>{{ mes3 }}</option>
+                    {% else %}
+                        <option value="{{ mes3 }}" >{{ mes3 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes4 %}
+                        <option value="{{ mes4 }}" selected>{{ mes4 }}</option>
+                    {% else %}
+                        <option value="{{ mes4 }}" >{{ mes4 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes5 %}
+                        <option value="{{ mes5 }}" selected>{{ mes5 }}</option>
+                    {% else %}
+                        <option value="{{ mes5 }}" >{{ mes5 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes6 %}
+                        <option value="{{ mes6 }}" selected>{{ mes6 }}</option>
+                    {% else %}
+                        <option value="{{ mes6 }}" >{{ mes6 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes7 %}
+                        <option value="{{ mes7 }}" selected>{{ mes7 }}</option>
+                    {% else %}
+                        <option value="{{ mes7 }}" >{{ mes7 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes8 %}
+                        <option value="{{ mes8 }}" selected>{{ mes8 }}</option>
+                    {% else %}
+                        <option value="{{ mes8 }}" >{{ mes8 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes9 %}
+                        <option value="{{ mes9 }}" selected>{{ mes9 }}</option>
+                    {% else %}
+                        <option value="{{ mes9 }}" >{{ mes9 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes10 %}
+                        <option value="{{ mes10 }}" selected>{{ mes10 }}</option>
+                    {% else %}
+                        <option value="{{ mes10 }}" >{{ mes10 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes11 %}
+                        <option value="{{ mes11 }}" selected>{{ mes11 }}</option>
+                    {% else %}
+                        <option value="{{ mes11 }}" >{{ mes11 }}</option>
+                    {% endif %}
+                    {% if  request.POST.date_operate  == mes12 %}
+                        <option value="{{ mes12 }}" selected>{{ mes12 }}</option>
+                    {% else %}
+                        <option value="{{ mes12 }}" >{{ mes12 }}</option>
+                    {% endif %}
+                </select>
+                {% endif %}
                 <br>
                 <button type="submit" class="btn btn-primary ">
                     Enviar
@@ -93,3 +335,4 @@
 {% block footer %}
     {% include '_footer.html' %}
 {% endblock%}
+
